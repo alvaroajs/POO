@@ -1,0 +1,107 @@
+@startuml
+
+  
+    class Pessoa {
+        -String nomePessoa
+        -int idadePessoa
+        -String ID
+        +Pessoa(String nomePessoa, int idadePessoa, String ID)
+        +String getNomePessoa()
+        +int getIdadePessoa()
+        +String getID()
+        +String getDetalhes()
+    }
+
+    class Sobrevivente {
+        -List<String> habilidades
+        -String status
+        +Sobrevivente(String nomePessoa, int idadePessoa, String ID, List~String~ habilidades, String status)
+        +void setHabilidades(List <String> habilidades)
+        +List String getHabilidades()
+        +void addHabilidade(String habilidade)
+        +String getStatus()
+        +String toString()
+    }
+
+    class Recursos {
+        -String tipo
+        -int quantidade
+        +Recursos(String tipo, int quantidade)
+        +String getTipo()
+        +int getQuantidade()
+        +void addQuantidade(int quantidade)
+        +void removeQuantidade(int quantidade)
+        +String toString()
+    }
+
+    class Missao {
+        -String nomeMissao
+        -String objetivo
+        -String local
+        -String status
+        -List<String> ID
+        -List<Recursos> recursosColetadosMissao
+        +Missao()
+        +void setNomeMissao(String nomeMissao)
+        +String getNomeMissao()
+        +void setObjetivo(String objetivo)
+        +String getObjetivo()
+        +void setLocal(String local)
+        +String getLocal()
+        +void setStatusMissao(String status)
+        +String getStatusMissao()
+        +void addID(String ID)
+        +List<String> detalhesID()
+        +void setRecursosColetados(List~<Recursos> recursoColetado)
+        +List<Recursos> getRecursosColetados()
+        +String toString()
+    }
+
+    class Vault {
+        -List<Sobrevivente> sobreviventes
+        -List<Missao> missoes
+        -List<Recursos> recursos
+        +Vault()
+        +void addSobrevivente(Sobrevivente sobrevivente)
+        +List<Sobrevivente> getSobreviventes()
+        +void setRecurso(Recursos recursos)
+        +List<Recursos> getRecursos()
+        +void addMissao(Missao missao)
+        +List<Missao> getMissoes()
+    }
+
+    enum StatusDisponivel {
+       
+        Ativo
+        Doente
+        Ferido
+        Morto
+    }
+
+    enum HabilidadesDisponivel {
+        
+        Engenharia
+        Medicina
+        Combate
+        Exploracao
+        Culinaria
+        Diplomacia
+        Hackeamento
+        Furtividade
+    }
+
+    enum StatusDisponivelMissao {
+        
+        Em_Andamento
+        Concluida
+        Fracasso
+    }
+
+    Pessoa <|-- Sobrevivente 
+    Vault  *-- "0..*" Sobrevivente 
+    Vault  *-- "0..*" Missao 
+    Vault  *-- "0..*" Recursos 
+    Missao  *-- "0..*" Recursos
+    Sobrevivente --> "1" StatusDisponivel
+    Sobrevivente --> "0..3" HabilidadesDisponivel
+    Missao --> StatusDisponivelMissao 
