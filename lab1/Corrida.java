@@ -44,7 +44,6 @@ public class Corrida {
         this.kmFinal = kmFinal;
     }  
     public float calcularDistancia (){
-
         return kmFinal - kmInicial;
     }
 }
