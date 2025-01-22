@@ -11,6 +11,6 @@ public class Pacote {
         this.cpf = cpf;
     }
     public String toString() {
-        return "Código Postal: " + codigoPostal + ", Descrição: " + descricao + ", Prioridade: " + prioridade + ", CPF: " + cpf + ".";
+        return "Código Postal: " + codigoPostal + ", Descrição: " + descricao + ", Prioridade: " + prioridade + ", CPF: " + cpf + ".\n";
     }
 }
