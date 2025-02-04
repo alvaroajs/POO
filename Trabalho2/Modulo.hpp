@@ -1,0 +1,16 @@
+#pragma once
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+class Modulo {
+    protected:
+        char tipo;
+
+    public:
+        Modulo() ;
+        Modulo(char tipo);
+        char getTipo();
+        virtual bool podeAcessar();
+};
