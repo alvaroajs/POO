@@ -30,5 +30,5 @@ bool Astronauta::isAtendimentoUrgente(){
     return antendimentoUrgente;
 }
 string Astronauta::toString(){
-    return "Astronauta: " + nome + ", Nivel de Saude: " + to_string(getNivelSaude()) +  ", Atendimento Urgente: " +  to_string(isAtendimentoUrgente()) +  ", Posicao: (" + to_string(getX()) + ", " + to_string(getY()) +  ").\n";
+    return "- " + nome + ": Saude: " + to_string(getNivelSaude()) +  ", Atendimento Médico Urgente: " + (isAtendimentoUrgente() ? "Sim" : "Não") +  ", Posicao: (" + to_string(getX()) + ", " + to_string(getY()) +  ").\n";
 }

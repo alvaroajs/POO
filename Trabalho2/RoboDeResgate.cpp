@@ -1,10 +1,16 @@
 #include "RoboDeResgate.hpp"
 
-RoboDeResgate::RoboDeResgate(int linha, int coluna){
-    this->linha = linha;
-    this->coluna = coluna;
+#include "RoboDeResgate.hpp"
+
+RoboDeResgate::RoboDeResgate(int x, int y, EstacaoEspacial& estacao) 
+    : posicaoInicialX(x), posicaoInicialY(y), estacao(estacao) {
+    // Qualquer inicialização adicional pode ser feita aqui
 }
-void RoboDeResgate::teste(){
-    cout << "Linha " << linha;
-    cout << " Coluna " << coluna;
-}   
+
+void RoboDeResgate::imprimir() {
+    // Implementação do método imprimir
+    cout << "Robo de resgate na posicao (" << posicaoInicialX << ", " << posicaoInicialY << ")" << endl;
+    estacao.imprimirEstacao();
+    cout <<endl;
+    estacao.ImprimirAstro();
+}

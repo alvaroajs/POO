@@ -12,6 +12,8 @@ void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
 
     if (tipo == 'S') {
         matriz[x][y] = new ModuloSeguranca();
+        posicaoInicialX = x;
+        posicaoInicialY = y;
     } else if (tipo == 'A') {
         matriz[x][y] = new ModuloComAstronauta();
     } else if (tipo == '#') {
@@ -25,6 +27,10 @@ void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
     }
 }
 
+void EstacaoEspacial::adicionarAstronauta(vector<Astronauta> astronautas){
+    this->astronautas = astronautas;
+}
+
 void EstacaoEspacial::imprimirEstacao(){
     for(int i = 0; i < linhas; i++){
         for(int j = 0; j < colunas; j++){
@@ -33,3 +39,17 @@ void EstacaoEspacial::imprimirEstacao(){
         cout << endl;
     }
 }
+
+void EstacaoEspacial::ImprimirAstro(){
+    for (Astronauta a : astronautas) {
+        cout << a.toString() << endl;
+    }
+}
+
+int EstacaoEspacial::getPosicaoInicialX(){
+    return posicaoInicialX;
+}
+int EstacaoEspacial::getPosicaoInicialY(){
+    return posicaoInicialY;
+}
+

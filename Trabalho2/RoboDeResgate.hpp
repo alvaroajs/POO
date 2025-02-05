@@ -1,20 +1,19 @@
 #pragma once
-
+#include <vector>
+#include <string>
+#include "EstacaoEspacial.hpp"
 #include <iostream>
 
 using namespace std;
 
 class RoboDeResgate {
+private:
+    int posicaoInicialX, posicaoInicialY, passos;
+    EstacaoEspacial estacao;
+    vector<Astronauta> resgatados;
+    vector<Astronauta> naoResgatados;
 
-    private:
-        int linha;
-        int coluna;
-
-        int posicaoinicialX;
-        int posicaoinicialY;
-    public:
-        RoboDeResgate(int linha, int coluna);
-        
-        void teste();
-
+public:
+    RoboDeResgate(int x, int y, EstacaoEspacial& estacao); // Apenas a declaração
+    void imprimir();
 };

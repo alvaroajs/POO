@@ -3,8 +3,8 @@
 #include "RoboDeResgate.hpp"
 #include "EstacaoEspacial.hpp"
 #include "Astronauta.hpp"
+#include <sstream>
 using namespace std;
-
 
 
 int main(){
@@ -53,12 +53,16 @@ int main(){
         for(int i = 0; i < dX; i++){
             for(int j = 0; j < dY; j++){
                 arquivoEntrada >> s[i][j];
-                cout << s[i][j] << " ";
+                //cout << s[i][j] << " ";
                 estacao.adicionarModulo(i, j, s[i][j]);
                 
             }
-            cout << endl;
+            //cout << endl;
         }
+        int posicaoInicialX = estacao.getPosicaoInicialX(), posicaoInicialY = estacao.getPosicaoInicialY();
+
+        cout << "Posição inicial: (" << posicaoInicialX << ", " << posicaoInicialY << ")" << endl;
+
         cout << endl;
         // Ignorar a próxima linha
         arquivoEntrada.ignore();
@@ -68,7 +72,7 @@ int main(){
         vector<Astronauta> astronautas;
         //ler os astronautas
         string astronauta;
-
+        string teste;
         while (getline(arquivoEntrada, linha) && linha != "Posições dos astronautas na matriz:") {
             string nome;
             int vida, atendimentoUrgente;
@@ -92,22 +96,41 @@ int main(){
             atendimentoUrgente = stoi(linha);
 
             // Adicionar o astronauta ao vetor
-            astronautas.push_back(Astronauta(nome, vida, atendimentoUrgente, 0, 2));
+            astronautas.push_back(Astronauta(nome, vida, atendimentoUrgente, 0, 0));
         }
+        //ler a posição dos astronautas 
 
-        cout<<"imprimindo astronautas: "<<endl;
-        for (Astronauta a : astronautas) {
-            cout << a.toString() << endl;
-        }   
         
+        int xAstronauta, yAstronauta;
+        int aux = 0;
 
+        
+        while (getline(arquivoEntrada, linha)){
+            
+            if (aux < astronautas.size()) {
+                string nomeAstronauta;
+                size_t pos = linha.find(':');
+                if (pos != string::npos) {
+                    nomeAstronauta = linha.substr(0, pos);
+                    linha.erase(0, pos + 2); // Remove ": " from the string
+                }
 
-        while (getline(arquivoEntrada, linha) && linha != "Posições dos astronautas na matriz:"){
-            cout << linha << endl;
+                pos = linha.find(',');
+                if (pos != string::npos) {
+                    xAstronauta = stoi(linha.substr(1, pos - 1)); // Remove '(' and get x position
+                    yAstronauta = stoi(linha.substr(pos + 1, linha.length() - pos - 2)); // Remove ')' and get y position
+                }
+
+                astronautas[aux].setX(xAstronauta);
+                astronautas[aux].setY(yAstronauta);
+                aux++;
+            }
         }
+        estacao.adicionarAstronauta(astronautas);
         
 
 
+        RoboDeResgate robo(posicaoInicialX, posicaoInicialY, estacao);
 
 
 
@@ -117,11 +140,9 @@ int main(){
 
 
 
-
-        cout << "Imprimindo dentro da estação  "<< endl;
-        estacao.imprimirEstacao();
         
-
+        cout << "Estação espacial inicial:" << endl;        
+        robo.imprimir();
 
         arquivoEntrada.close();
         arquivoSaida.close();

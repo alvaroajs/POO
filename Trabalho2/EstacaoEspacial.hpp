@@ -10,17 +10,24 @@
 #include "ModuloVazio.hpp"
 #include "ModuloComFogo.hpp"
 #include "ModuloNormal.hpp"
+#include "Astronauta.hpp"
 
 using namespace std;
 
 class EstacaoEspacial{
     private:
         vector<vector<Modulo*>> matriz;
-        int linhas, colunas;
+        int linhas, colunas, posicaoInicialX, posicaoInicialY;
+        vector<Astronauta> astronautas;
 
     public:
         EstacaoEspacial(int linhas, int colunas);
         void adicionarModulo(int i, int j, char tipo);
         void imprimirEstacao();
+        void adicionarAstronauta(vector<Astronauta> astronautas);
+        void ImprimirAstro();
+
+        int getPosicaoInicialX();
+        int getPosicaoInicialY();
 
 };
