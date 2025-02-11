@@ -22,12 +22,20 @@ class EstacaoEspacial{
 
     public:
         EstacaoEspacial(int linhas, int colunas);
+        ~EstacaoEspacial();
         void adicionarModulo(int i, int j, char tipo);
+        void adicionarAstronauta(string nome, int vida, int atendimentoUrgente, int x, int y);
         void imprimirEstacao();
-        void adicionarAstronauta(vector<Astronauta> astronautas);
         void ImprimirAstro();
 
         int getPosicaoInicialX();
         int getPosicaoInicialY();
+
+        int getLinhas();
+        int getColunas();
+
+        vector<vector<Modulo*>> getMatriz();
+
+       
 
 };

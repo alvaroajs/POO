@@ -11,7 +11,7 @@ int main(){
 
 
     
-    for(int i = 1; i <= 1; i++){
+    for(int i = 1; i <= 2; i++){
         string entrada = "entrada" + to_string(i) + ".txt";
         string saida = "saida" + to_string(i) + ".txt";
             
@@ -59,6 +59,11 @@ int main(){
             }
             //cout << endl;
         }
+
+
+
+
+
         int posicaoInicialX = estacao.getPosicaoInicialX(), posicaoInicialY = estacao.getPosicaoInicialY();
 
         cout << "Posição inicial: (" << posicaoInicialX << ", " << posicaoInicialY << ")" << endl;
@@ -96,7 +101,7 @@ int main(){
             atendimentoUrgente = stoi(linha);
 
             // Adicionar o astronauta ao vetor
-            astronautas.push_back(Astronauta(nome, vida, atendimentoUrgente, 0, 0));
+            estacao.adicionarAstronauta(nome, vida, atendimentoUrgente, 0, 0);
         }
         //ler a posição dos astronautas 
 
@@ -126,11 +131,12 @@ int main(){
                 aux++;
             }
         }
-        estacao.adicionarAstronauta(astronautas);
         
 
 
         RoboDeResgate robo(posicaoInicialX, posicaoInicialY, estacao);
+
+        robo.Resultados();
 
 
 
@@ -144,8 +150,12 @@ int main(){
         cout << "Estação espacial inicial:" << endl;        
         robo.imprimir();
 
+        cout << "Astronautas resgatados:" << endl;
+        robo.buscarAstronautas();
         arquivoEntrada.close();
         arquivoSaida.close();
+        
+
         }
 
 

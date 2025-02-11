@@ -4,9 +4,11 @@
 EstacaoEspacial::EstacaoEspacial(int linhas, int colunas){
     this->linhas = linhas;
     this->colunas = colunas;
-    matriz = vector<vector<Modulo*>>(linhas, vector<Modulo*>(colunas));
+    matriz = vector<vector<Modulo*>> (linhas, vector<Modulo*>(colunas));
 
 }
+
+EstacaoEspacial::~EstacaoEspacial(){}
 
 void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
 
@@ -27,11 +29,12 @@ void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
     }
 }
 
-void EstacaoEspacial::adicionarAstronauta(vector<Astronauta> astronautas){
-    this->astronautas = astronautas;
+void EstacaoEspacial::adicionarAstronauta(string nome, int vida, int atendimentoUrgente, int x, int y){
+    astronautas.push_back(Astronauta(nome, vida, atendimentoUrgente, x, y));
 }
 
 void EstacaoEspacial::imprimirEstacao(){
+
     for(int i = 0; i < linhas; i++){
         for(int j = 0; j < colunas; j++){
             cout << matriz[i][j]->getTipo() << " ";
@@ -52,4 +55,17 @@ int EstacaoEspacial::getPosicaoInicialX(){
 int EstacaoEspacial::getPosicaoInicialY(){
     return posicaoInicialY;
 }
+
+int EstacaoEspacial::getLinhas(){
+    return linhas;
+}
+int EstacaoEspacial::getColunas(){
+    return colunas;
+}
+
+vector<vector<Modulo*>> EstacaoEspacial::getMatriz(){
+    return matriz;
+}
+
+
 

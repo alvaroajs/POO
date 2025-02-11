@@ -15,5 +15,10 @@ private:
 
 public:
     RoboDeResgate(int x, int y, EstacaoEspacial& estacao); // Apenas a declaração
+    ~RoboDeResgate();
     void imprimir();
+    string Resultados();
+    void buscarAstronautas();
+    bool proximoAoFogo(int x, int y);
+    bool posicaoValida(int x, int y);
 };
