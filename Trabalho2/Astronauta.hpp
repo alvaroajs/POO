@@ -22,6 +22,7 @@ class Astronauta {
         int getNivelSaude();
         bool isAtendimentoUrgente();
         string toString();
+        string getDetalhes();
 
 
 };

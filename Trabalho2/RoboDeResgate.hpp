@@ -21,4 +21,6 @@ public:
     void buscarAstronautas();
     bool proximoAoFogo(int x, int y);
     bool posicaoValida(int x, int y);
+
+    
 };

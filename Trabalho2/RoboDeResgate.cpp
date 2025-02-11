@@ -64,7 +64,14 @@ void RoboDeResgate::buscarAstronautas() {
 
         if (matriz[x][y]->getTipo() == 'A') {
             cout << "Astronauta encontrado na posicao (" << x << ", " << y << ")" << endl;
+
+        for (Astronauta a : estacao.getAstronautas()) {
+            if (a.getX() == x && a.getY() == y) {
+                cout << "Match encontrado!" << endl;
+                resgatados.push_back(a);
+            }
         }
+}
 
         vector<pair<int, int>> direcoes = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         for (auto [dx, dy] : direcoes) {
@@ -77,6 +84,11 @@ void RoboDeResgate::buscarAstronautas() {
                 passos++;
             }
         }
+    }
+    cout << "Astronautas resgatados: " << endl;
+
+    for (Astronauta aux : resgatados) {
+        cout << aux.getDetalhes() << endl;
     }
     cout << "Total de passos dados: " << passos << endl;
 

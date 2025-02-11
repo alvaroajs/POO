@@ -11,7 +11,7 @@ int main(){
 
 
     
-    for(int i = 1; i <= 2; i++){
+    for(int i = 1; i <= 1; i++){
         string entrada = "entrada" + to_string(i) + ".txt";
         string saida = "saida" + to_string(i) + ".txt";
             
@@ -111,8 +111,7 @@ int main(){
 
         
         while (getline(arquivoEntrada, linha)){
-            
-            if (aux < astronautas.size()) {
+            if (aux < estacao.getAstronautas().size()) {
                 string nomeAstronauta;
                 size_t pos = linha.find(':');
                 if (pos != string::npos) {
@@ -125,13 +124,12 @@ int main(){
                     xAstronauta = stoi(linha.substr(1, pos - 1)); // Remove '(' and get x position
                     yAstronauta = stoi(linha.substr(pos + 1, linha.length() - pos - 2)); // Remove ')' and get y position
                 }
-
-                astronautas[aux].setX(xAstronauta);
-                astronautas[aux].setY(yAstronauta);
+                cout << " aux " << xAstronauta << " " << yAstronauta << endl;
+                estacao.adicionarPosicaoAstronauta(xAstronauta, yAstronauta, aux);
                 aux++;
             }
         }
-        
+
 
 
         RoboDeResgate robo(posicaoInicialX, posicaoInicialY, estacao);

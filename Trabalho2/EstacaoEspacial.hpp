@@ -25,8 +25,11 @@ class EstacaoEspacial{
         ~EstacaoEspacial();
         void adicionarModulo(int i, int j, char tipo);
         void adicionarAstronauta(string nome, int vida, int atendimentoUrgente, int x, int y);
+        void adicionarPosicaoAstronauta(int x, int y, int aux);
         void imprimirEstacao();
         void ImprimirAstro();
+
+        vector<Astronauta> getAstronautas();
 
         int getPosicaoInicialX();
         int getPosicaoInicialY();

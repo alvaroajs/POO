@@ -33,6 +33,14 @@ void EstacaoEspacial::adicionarAstronauta(string nome, int vida, int atendimento
     astronautas.push_back(Astronauta(nome, vida, atendimentoUrgente, x, y));
 }
 
+void EstacaoEspacial::adicionarPosicaoAstronauta(int x, int y, int aux){
+    cout << "Atualizando posição do astronauta " << aux << " para (" << x << "," << y << ")" << endl;
+    astronautas[aux].setX(x);
+    astronautas[aux].setY(y);
+    cout << "Nova posição: (" << astronautas[aux].getX() << "," << astronautas[aux].getY() << ")" << endl;
+}
+
+
 void EstacaoEspacial::imprimirEstacao(){
 
     for(int i = 0; i < linhas; i++){
@@ -67,5 +75,9 @@ vector<vector<Modulo*>> EstacaoEspacial::getMatriz(){
     return matriz;
 }
 
+
+vector<Astronauta> EstacaoEspacial::getAstronautas(){
+    return astronautas;
+}
 
 
