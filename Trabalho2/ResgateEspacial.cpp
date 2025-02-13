@@ -7,11 +7,24 @@
 using namespace std;
 
 
+void lerArquivo(int i);
+
 int main(){
+    for(int i = 1; i <= 1; i++){
+
+        lerArquivo(i);
+    }
+
+    return 0;
+}
+
+
+
+void lerArquivo(int i){
 
 
     
-    for(int i = 1; i <= 1; i++){
+    while (true) {
         string entrada = "entrada" + to_string(i) + ".txt";
         string saida = "saida" + to_string(i) + ".txt";
             
@@ -19,7 +32,7 @@ int main(){
         arquivoEntrada.open(entrada);
         if (!arquivoEntrada.is_open()) {
             cerr << "Erro ao abrir o arquivo de entrada: " << entrada << endl;
-            continue; // Passa para o próximo arquivo
+            break;; // Passa para o próximo arquivo
         }
 
         // Abrir o arquivo de saída
@@ -27,7 +40,7 @@ int main(){
         if (!arquivoSaida.is_open()) {
             cerr << "Erro ao criar o arquivo de saída: " << saida << endl;
             arquivoEntrada.close();
-            continue; // Passa para o próximo arquivo
+            break;; // Passa para o próximo arquivo
         }
         
         int dX, dY, x = 0, y = 0; // tamanho da matriz
@@ -37,47 +50,68 @@ int main(){
             cerr << "Erro ao ler as dimensões da matriz do arquivo: " << entrada << endl;
             arquivoEntrada.close();
             arquivoSaida.close();
-            continue; // Passa para o próximo arquivo
+            break;; // Passa para o próximo arquivo
         }
 
         EstacaoEspacial estacao(dX, dY);
         string linha;
         // Criar uma nova estação espacial
-        EstacaoEspacial novaEstacao(dX, dY);
-        char s[dX][dY];
         // Apagar a estação espacial existente e criar uma nova
-        estacao = EstacaoEspacial(dX, dY);
+        //estacao = EstacaoEspacial(dX, dY);
         cout<<endl;
-
+        
+        arquivoEntrada.ignore();
         // Ler a matriz da estação espacial
-        for(int i = 0; i < dX; i++){
-            for(int j = 0; j < dY; j++){
-                arquivoEntrada >> s[i][j];
-                //cout << s[i][j] << " ";
-                estacao.adicionarModulo(i, j, s[i][j]);
+        int k = 0;
+        int j = 0;
+        bool erro = false;
+
+        for(k = 0; k < dX; k++){
+            
+            getline(arquivoEntrada, linha);
+            for(j = 0; j < linha.length(); j++){
+               
+                if(linha.length() != dY){
+                    erro = true;
+                    break;
+                }
                 
+                estacao.adicionarModulo(k, j, linha[j]);
             }
-            //cout << endl;
+            if(erro){
+                break;
+            }
+            
+
         }
 
+        if (k != dX){ // verifica a coluna tem o mesmo tamanho que o informado
+            erro = true;
+        }
+        if(erro){
+            //estacao.deletarModulo();
+            cout << "Matriz do arquivo entrada"<< i <<  ".txt mal formatada, passando para o proximo arquivo." << endl;
+            arquivoSaida << "Matriz do arquivo entrada"<< i <<  ".txt mal formatada, passando para o proximo arquivo.";
+            arquivoEntrada.close();
+            arquivoSaida.close();
 
+            break; 
+            
+        }
 
-
-
+        
         int posicaoInicialX = estacao.getPosicaoInicialX(), posicaoInicialY = estacao.getPosicaoInicialY();
 
-        cout << "Posição inicial: (" << posicaoInicialX << ", " << posicaoInicialY << ")" << endl;
 
-        cout << endl;
         // Ignorar a próxima linha
-        arquivoEntrada.ignore();
+        // arquivoEntrada.ignore();
+        
         getline(arquivoEntrada, linha);
 
 
         vector<Astronauta> astronautas;
         //ler os astronautas
         string astronauta;
-        string teste;
         while (getline(arquivoEntrada, linha) && linha != "Posições dos astronautas na matriz:") {
             string nome;
             int vida, atendimentoUrgente;
@@ -124,7 +158,6 @@ int main(){
                     xAstronauta = stoi(linha.substr(1, pos - 1)); // Remove '(' and get x position
                     yAstronauta = stoi(linha.substr(pos + 1, linha.length() - pos - 2)); // Remove ')' and get y position
                 }
-                cout << " aux " << xAstronauta << " " << yAstronauta << endl;
                 estacao.adicionarPosicaoAstronauta(xAstronauta, yAstronauta, aux);
                 aux++;
             }
@@ -134,33 +167,23 @@ int main(){
 
         RoboDeResgate robo(posicaoInicialX, posicaoInicialY, estacao);
 
-        robo.Resultados();
 
 
-
-
-
-
-
-
-
-        
-        cout << "Estação espacial inicial:" << endl;        
+        cout << "Estação espacial "<< i <<" iniciada." << endl;        
         robo.imprimir();
-
-        cout << "Astronautas resgatados:" << endl;
-        robo.buscarAstronautas();
+        
+        cout << robo.Resultados();
+        arquivoSaida << robo.Resultados();
         arquivoEntrada.close();
         arquivoSaida.close();
-        
 
+        break;
         }
 
-
     
     
 
 
 
-    return 0;
+
 }

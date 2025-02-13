@@ -1,23 +1,14 @@
-10 10
-S.........
-.###..#..A
-.###..#...
-.~~~..F..A
-.~~~..F.A.
-A~~~..F.F.
-.~~~..F...
-.....F....
-..A..F....
-.......A..
+7 7
+S......
+.......
+.F..F..
+.F...A.
+.F.....
+AFFFFF.
+.......
 Astronautas:
-Scott Kelly,78,0
-Peggy Whitson,65,1
-John Glenn,82,0
-Ellen Ochoa,55,1
-Alan Shepard,88,0
+Sergey Krikalev,95,0
+Alan Shepard,80,1
 Posições dos astronautas na matriz:
-Scott Kelly: (1,9)
-Peggy Whitson: (4,8)
-John Glenn: (5,0)
-Ellen Ochoa: (8,2)
-Alan Shepard: (9,7)
+Sergey Krikalev: (3,5)
+Alan Shepard: (5,0)

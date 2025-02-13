@@ -8,7 +8,9 @@ EstacaoEspacial::EstacaoEspacial(int linhas, int colunas){
 
 }
 
-EstacaoEspacial::~EstacaoEspacial(){}
+EstacaoEspacial::~EstacaoEspacial(){
+    
+}
 
 void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
 
@@ -16,6 +18,7 @@ void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
         matriz[x][y] = new ModuloSeguranca();
         posicaoInicialX = x;
         posicaoInicialY = y;
+
     } else if (tipo == 'A') {
         matriz[x][y] = new ModuloComAstronauta();
     } else if (tipo == '#') {
@@ -24,8 +27,16 @@ void EstacaoEspacial::adicionarModulo(int x, int y, char tipo){
         matriz[x][y] = new ModuloVazio();
     } else if (tipo == 'F') {
         matriz[x][y] = new ModuloComFogo();
-    } else if (tipo == '.') {
+    } else if (tipo == '.' || tipo == 'R') {    
         matriz[x][y] = new ModuloNormal();
+    }
+
+}
+void EstacaoEspacial::deletarModulo(){
+    for(int i = 0; i < linhas; i++){
+        for(int j = 0; j < colunas; j++){
+            delete matriz[i][j];
+        }
     }
 }
 
@@ -34,10 +45,9 @@ void EstacaoEspacial::adicionarAstronauta(string nome, int vida, int atendimento
 }
 
 void EstacaoEspacial::adicionarPosicaoAstronauta(int x, int y, int aux){
-    cout << "Atualizando posição do astronauta " << aux << " para (" << x << "," << y << ")" << endl;
     astronautas[aux].setX(x);
     astronautas[aux].setY(y);
-    cout << "Nova posição: (" << astronautas[aux].getX() << "," << astronautas[aux].getY() << ")" << endl;
+
 }
 
 
@@ -53,7 +63,7 @@ void EstacaoEspacial::imprimirEstacao(){
 
 void EstacaoEspacial::ImprimirAstro(){
     for (Astronauta a : astronautas) {
-        cout << a.toString() << endl;
+        cout << a.toString();
     }
 }
 

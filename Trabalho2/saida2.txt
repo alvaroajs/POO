@@ -1,0 +1,8 @@
+Relatorio de Resgate:
+-Numero de astronautas resgatados: 1
+- Sergey Krikalev: Saude: 95, Atendimento Médico Urgente: Não, Posicao: (3, 5).
+
+Astronautas não resgatados: 1
+- Alan Shepard: Saude: 80, Atendimento Médico Urgente: Sim, Posicao: (5, 0).
+
+Tempo total da operação de resgate: 20

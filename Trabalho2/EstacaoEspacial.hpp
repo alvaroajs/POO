@@ -19,6 +19,7 @@ class EstacaoEspacial{
         vector<vector<Modulo*>> matriz;
         int linhas, colunas, posicaoInicialX, posicaoInicialY;
         vector<Astronauta> astronautas;
+   
 
     public:
         EstacaoEspacial(int linhas, int colunas);
@@ -28,6 +29,8 @@ class EstacaoEspacial{
         void adicionarPosicaoAstronauta(int x, int y, int aux);
         void imprimirEstacao();
         void ImprimirAstro();
+        void deletarModulo();
+        
 
         vector<Astronauta> getAstronautas();
 

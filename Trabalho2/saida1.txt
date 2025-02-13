@@ -1,0 +1,12 @@
+Relatorio de Resgate:
+-Numero de astronautas resgatados: 4
+- Buzz Aldrin: Saude: 95, Atendimento Médico Urgente: Não, Posicao: (5, 0).
+- Marcos Pontes: Saude: 50, Atendimento Médico Urgente: Sim, Posicao: (8, 2).
+- Yuri Gagarin: Saude: 85, Atendimento Médico Urgente: Não, Posicao: (1, 9).
+- Valentina Tereshkova: Saude: 70, Atendimento Médico Urgente: Não, Posicao: (3, 9).
+
+Astronautas não resgatados: 1
+- Neil Armstrong: Saude: 60, Atendimento Médico Urgente: Sim, Posicao: (4, 8).
+
+Tempo total da operação de resgate: 44
+

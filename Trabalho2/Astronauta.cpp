@@ -17,7 +17,6 @@ int Astronauta::getY(){
 }
 void Astronauta::setX(int x){
     this->x = x;
-    cout << x << endl;
 }
 void Astronauta::setY(int y){
     this->y = y;
